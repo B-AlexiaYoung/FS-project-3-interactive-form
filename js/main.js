@@ -67,13 +67,15 @@ activities[0].addEventListener("change", (event) => {
             express[0].checked = false;
             console.log(express[0].parentNode);
             express[0].parentNode.classList.add("disabled");
-            totalCostActivities += 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            // totalCostActivities += 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(100);
         } else {
             express[0].removeAttribute("disabled");
             express[0].parentNode.classList.remove("disabled");
-            totalCostActivities -= 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            // totalCostActivities -= 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            decreaseCost(100);
         }
     }
     if (activityCheck.name === "express") {
@@ -81,16 +83,17 @@ activities[0].addEventListener("change", (event) => {
         if (activityCheck.checked === true) {
             jsFrameworks[0].setAttribute("disabled", true);
             jsFrameworks[0].checked = false;
-            console.log(express[0].parentNode);
+            //console.log(express[0].parentNode);
             jsFrameworks[0].parentNode.classList.add("disabled");
-            totalCostActivities += 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            // totalCostActivities += 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(100);
         } else {
             jsFrameworks[0].removeAttribute("disabled");
             jsFrameworks[0].parentNode.classList.remove("disabled");
-            totalCostActivities -= 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+            // totalCostActivities -= 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            decreaseCost(100);
         }
     }
     if (activityCheck.name === "js-libs") {
@@ -99,14 +102,15 @@ activities[0].addEventListener("change", (event) => {
             node[0].setAttribute("disabled", true);
             node[0].checked = false;
             node[0].parentNode.classList.add("disabled");
-            totalCostActivities += 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            // totalCostActivities += 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(100);
         } else {
             node[0].removeAttribute("disabled");
             node[0].parentNode.classList.remove("disabled");
-            totalCostActivities -= 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+            // totalCostActivities -= 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            decreaseCost(100);
         }
     }
     if (activityCheck.name === "node") {
@@ -114,39 +118,41 @@ activities[0].addEventListener("change", (event) => {
         if (activityCheck.checked === true) {
             jsLibs[0].setAttribute("disabled", true);
             jsLibs[0].checked = false;
-            console.log(express[0].parentjsLibs);
+            //console.log(express[0].parentjsLibs);
             jsLibs[0].parentNode.classList.add("disabled");
-            totalCostActivities += 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            // totalCostActivities += 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(100);
         } else {
             jsLibs[0].removeAttribute("disabled");
             jsLibs[0].parentNode.classList.remove("disabled");
-            totalCostActivities -= 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+            // totalCostActivities -= 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            decreaseCost(100);
         }
     }
     if (activityCheck.name === "all") {
         if (activityCheck.checked === true){
-            totalCostActivities += 200;
-        total[0].innerHTML="Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-        }else{
-            totalCostActivities -= 200;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+        //     totalCostActivities += 200;
+        // total[0].innerHTML="Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(200);
+    }else{
+            // totalCostActivities -= 200;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+        decreaseCost(200);
         }
     }
     if (activityCheck.name === "build-tools" || activityCheck.name === "npm") {
         
         if (activityCheck.checked === true){
 
-        totalCostActivities += 100;
-        total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+        // totalCostActivities += 100;
+        // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            increaseCost(100);
         }else{
-            totalCostActivities -= 100;
-            total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
-
+            // totalCostActivities -= 100;
+            // total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+            decreaseCost(100);
         }
     }
 
@@ -154,6 +160,15 @@ activities[0].addEventListener("change", (event) => {
 //*********************************** */
 //    helper functions for listeners
 //*********************************** */
+
+const increaseCost =(cost)=>{
+    totalCostActivities += cost;
+    total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+}
+const decreaseCost =(cost)=>{
+    totalCostActivities -= cost;
+    total[0].innerHTML="Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
+}
 
 //function to reset activities
 // const resetActivities = () => {
