@@ -76,6 +76,11 @@ label {
 	margin-bottom: .5em;
 }
 
+
+label.disabled{
+	font-weight: 100;
+	color:lightgray;
+}
 input,
 select {
 	margin-bottom: 1.125em;	
@@ -112,7 +117,13 @@ button {
 button:hover {
 	background: #184c62;
 }
-
+.total{
+	background: #accbd9;
+	width: 25%;
+	font-size: 1.25em;
+	font-weight: 500;
+	padding:.5em;
+}
 /* ================================= 
   Page Styles
 ==================================== */
