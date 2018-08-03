@@ -340,9 +340,12 @@ const validateCreditCard = (ccStringValue) => {
     console.log(cardError.value);
     cardError.value="";
     if (ccStringValue.length < 13) {
+        console.log(ccStringValue.length);
     console.log("under 13")
     cardError.setAttribute("placeholder", "the number you entered was too short")
     } else if (ccStringValue.length > 16) {
+        console.log(ccStringValue.length);
+
     console.log("over 16");
     let cardError = document.getElementById("cc-num");
         console.log(cardError.textContent);
@@ -380,9 +383,15 @@ const zip=document.getElementById("zip");
     //let inputZip = zip.value;
     if(zipregEx.test(zip.value)=== false){
         zip.style.borderColor="red";
-    }else if(zip.length != 5){
+    }
+    let numString= zip.value.toString();
+    console.log(numString);
+    
+    if(numString.length<5 || numString.length > 5){
         zip.style.borderColor="red";
 
+    }if(numString.length === 5 ){
+        zip.style.borderColor="transparent";
     }
 };
 
@@ -394,10 +403,17 @@ const validateCvv = () => {
         //let inputZip = zip.value;
         if(cvvregEx.test(cvv.value)=== false){
             cvv.style.borderColor="red";
-        } else if(cvv.length != 3){
+        }
+        let numString= cvv.value.toString();
+        console.log(numString);
+
+        if(numString.length<3 || numString.length > 3){
             cvv.style.borderColor="red";
 
+        }if(numString.length === 3 ){
+            cvv.style.borderColor="transparent";
         }
+        
     };
 // more cc card validation
 // const checkForLetter = () => {
