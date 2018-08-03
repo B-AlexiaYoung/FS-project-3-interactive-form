@@ -117,6 +117,21 @@ button {
 button:hover {
 	background: #184c62;
 }
+.error{
+	border-color:red;
+}
+.popup{
+	color:red;
+}
+/*snippet w3 school*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+}
 .total{
 	background: #accbd9;
 	width: 25%;
@@ -124,6 +139,19 @@ button:hover {
 	font-weight: 500;
 	padding:.5em;
 }
+.tool{
+	position:relative;
+	background-color:#35474F;
+	border-radius:.25em;
+	color: #EDEFF0;
+	/*width:17.5em; */
+	padding:.5em;
+	margin-left:.7em;
+}
+
+
+
+
 /* ================================= 
   Page Styles
 ==================================== */
