@@ -123,6 +123,9 @@ button:hover {
 .popup{
 	color:red;
 }
+#other-title::placeholder{
+color:darkgray;
+}
 /*snippet w3 school*/
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: red;
