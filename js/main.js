@@ -208,41 +208,51 @@ cardListener.addEventListener("input", (event, para) => {
 button[0].addEventListener("click", (event) => {
 
     // //validation for name
-    let nameCheck;
-    validateName(nameCheck);
+    let nameCheck = validateName();
     //validation for email
-    let emailCheck;
-    validateEmail(emailCheck);
+    let emailCheck = validateEmail();
 
     //validation one checkbox must be checked
-    let boxCheck;
-    validateCheckbox(boxCheck);
+    let boxCheck = validateCheckbox();
 
     //validation for credit card length
     if (ccStringValue === undefined) {
         ccStringValue = "";
     };
-    let ccCheck;
-    validateCreditCard(ccStringValue, ccCheck);
+    let ccCheck = validateCreditCard(ccStringValue);
 
     //validation for zip 
-    let zipCheck;
-    validateZip(zipCheck);
+    let zipCheck = validateZip();
 
     //validation for cvv
-    let cvvCheck;
-    validateCvv(cvvCheck);
-
+    let cvvCheck = validateCvv();
+    console.log(nameCheck);
+    console.log(emailCheck);
+    console.log(boxCheck);
+    console.log(zipCheck);
+    console.log(cvvCheck);
+    let paymentCheck = false;
+    if (payment.selected ==="credit card") {
+        if (ccCheck === true &&
+            zipCheck === true &&
+            cvvCheck === true) {
+            paymentCheck = true;
+        }
+    }else{
+        paymentCheck = true;
+    }
     // final check 
+    console.log(paymentCheck);
     if (nameCheck === true &&
         emailCheck === true &&
         boxCheck === true &&
-        ccCheck === true &&
-        zipCheck === true &&
-        cvvCheck === true
+        paymentCheck ===true
+
     ) {
-        form.submit();
+        console.log("submit");
+        // form.submit();
     } else {
+        console.log("should not be submitted");
         event.preventDefault();
     }
 }) //end listener on register button - validation
@@ -262,23 +272,27 @@ const decreaseCost = (cost) => {
     totalCostActivities -= cost;
     total[0].innerHTML = "Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    $" + totalCostActivities;
 }
-const validateName = (nameCheck) => {
+const validateName = () => {
     //validation for name
     if (name.value === "") {
         name.setAttribute("placeholder", "Please enter your name");
         name.setAttribute("class", "error");
-        event.preventDefault();
         nameCheck = false;
     } else {
         nameCheck = true;
+        name.setAttribute("placeholder", "");
+        name.removeAttribute("class", "error");
+
     }
     return nameCheck;
 }
 
-const validateEmail = (mail, emailCheck) => {
+const validateEmail = (mail) => {
     mail = document.getElementById("mail");
     if (regEx.test(mail.value) === true) {
         emailCheck = true;
+        mail.setAttribute("placeholder", "");
+        mail.removeAttribute("class", "error");
     } else {
         mail.setAttribute("placeholder", "Please enter a valid email ")
         mail.setAttribute("class", "error");
@@ -289,17 +303,22 @@ const validateEmail = (mail, emailCheck) => {
 }
 
 //validation one checkbox must be checked
-const validateCheckbox = (boxCheck) => {
+const validateCheckbox = () => {
     let actCheckbox = document.querySelectorAll("input[type='checkbox']");
     countchecked = 0;
+    let legend = document.getElementsByTagName("legend");
+    console.log(legend[2]);
+    legend[2].style.color = "#184f68";
+    legend[2].textContent = "Register for Activities";
     for (let i = 0; i < actCheckbox.length; i++) {
+
         if (actCheckbox[i].checked) {
             countchecked++;
         }
         boxCheck = true;
+
     }
     if (countchecked === 0) {
-        let legend = document.getElementsByTagName("legend");
         for (j = 0; j < legend.length; j++) {
             if (legend[j].textContent === "Register for Activities") {
                 legend[j].textContent = "Register for Activities:  Please choose an activity"
@@ -312,11 +331,13 @@ const validateCheckbox = (boxCheck) => {
 }
 
 //validation credit card
-const validateCreditCard = (ccStringValue, ccCheck) => {
+const validateCreditCard = (ccStringValue) => {
 
     let cardError = document.getElementById("cc-num");
     // console.log(cardError.value);
     cardError.value = "";
+    console.log(ccStringValue);
+    console.log(ccStringValue.length);
     if (ccStringValue.length < 13) {
         cardError.setAttribute("placeholder", "the number you entered was too short")
         ccCard = false;
@@ -328,6 +349,7 @@ const validateCreditCard = (ccStringValue, ccCheck) => {
         ccCard = false;
     } else {
         ccCard = true;
+        cardError.setAttribute("placeholder", "");
     }
     return ccCard;
 }
@@ -351,28 +373,28 @@ const createCCError = () => {
 
 
 //validation on zip
-const validateZip = (zipCheck) => {
+const validateZip = () => {
     const zip = document.getElementById("zip");
     if (zipregEx.test(zip.value) === false) {
         zip.style.borderColor = "red";
-        zipcheck = false;
+        zipCheck = false;
     }
     let numString = zip.value.toString();
 
     if (numString.length < 5 || numString.length > 5) {
         zip.style.borderColor = "red";
-        zipcheck = false;
+        zipCheck = false;
     }
     if (numString.length === 5) {
         zip.style.borderColor = "transparent";
-        zipcheck = true;
+        zipCheck = true;
     }
     return zipCheck;
 };
 
 
 //validation on cvv
-const validateCvv = (cvvCheck) => {
+const validateCvv = () => {
     const cvv = document.getElementById("cvv");
     if (cvvregEx.test(cvv.value) === false) {
         cvv.style.borderColor = "red";
