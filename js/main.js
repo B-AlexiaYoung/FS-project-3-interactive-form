@@ -4,8 +4,8 @@ const selectColor = document.getElementById("design");
 const activities = document.getElementsByClassName("activities");
 const payment = document.getElementById("payment");
 const regEx = /[^@]+@[^@.]+\.[a-z]+$/i;
-const zipregEx = /\d{5}/;
-const cvvregEx = /\d{3}/;
+const zipregEx = /^\d{5}$/;
+const cvvregEx = /^\d{3}$/;
 
 
 let totalCostActivities = 0;
@@ -57,7 +57,6 @@ selectColor.addEventListener("change", (event) => {
     let cornflowerblue = document.querySelector('[value=cornflowerblue]');
     let darkslategrey = document.querySelector('[value=darkslategrey]');
     let gold = document.querySelector('[value=gold]');
-    console.log(selectColor.value);
     if (selectColor.value === "js puns") {
 
         cornflowerblue.style.display = "block";
@@ -66,7 +65,6 @@ selectColor.addEventListener("change", (event) => {
         tomato.style.display = "none";
         steelblue.style.display = "none";
         dimgrey.style.display = "none";
-        console.log(tomato);
     }
     if (selectColor.value === "heart js") {
         tomato.style.display = "block";
@@ -86,7 +84,6 @@ activities[0].addEventListener("change", (event) => {
         if (activityCheck.checked === true) {
             express[0].setAttribute("disabled", true);
             express[0].checked = false;
-            console.log(express[0].parentNode);
             express[0].parentNode.classList.add("disabled");
             increaseCost(100);
         } else {
@@ -189,10 +186,7 @@ cardListener.addEventListener("input", (event, para) => {
     /*else if (isNaN(ccError) && check === true) {
 
        } */
-    else if (!isNaN(ccError) && check === false) {
-        console.log("number");
-    } else if (ccStringValue.indexOf(" ") != -1 && check === false) {
-        //console.log("space");
+    else if (!isNaN(ccError) && check === false) {} else if (ccStringValue.indexOf(" ") != -1 && check === false) {
         check = true;
         createCCError();
 
@@ -226,33 +220,27 @@ button[0].addEventListener("click", (event) => {
 
     //validation for cvv
     let cvvCheck = validateCvv();
-    console.log(nameCheck);
-    console.log(emailCheck);
-    console.log(boxCheck);
-    console.log(zipCheck);
-    console.log(cvvCheck);
+
+
     let paymentCheck = false;
-    if (payment.selected ==="credit card") {
+    if (payment.selected === "credit card") {
         if (ccCheck === true &&
             zipCheck === true &&
             cvvCheck === true) {
             paymentCheck = true;
         }
-    }else{
+    } else {
         paymentCheck = true;
     }
     // final check 
-    console.log(paymentCheck);
     if (nameCheck === true &&
         emailCheck === true &&
         boxCheck === true &&
-        paymentCheck ===true
+        paymentCheck === true
 
     ) {
-        console.log("submit");
         // form.submit();
     } else {
-        console.log("should not be submitted");
         event.preventDefault();
     }
 }) //end listener on register button - validation
@@ -307,7 +295,6 @@ const validateCheckbox = () => {
     let actCheckbox = document.querySelectorAll("input[type='checkbox']");
     countchecked = 0;
     let legend = document.getElementsByTagName("legend");
-    console.log(legend[2]);
     legend[2].style.color = "#184f68";
     legend[2].textContent = "Register for Activities";
     for (let i = 0; i < actCheckbox.length; i++) {
@@ -334,10 +321,7 @@ const validateCheckbox = () => {
 const validateCreditCard = (ccStringValue) => {
 
     let cardError = document.getElementById("cc-num");
-    // console.log(cardError.value);
     cardError.value = "";
-    console.log(ccStringValue);
-    console.log(ccStringValue.length);
     if (ccStringValue.length < 13) {
         cardError.setAttribute("placeholder", "the number you entered was too short")
         ccCard = false;
@@ -378,17 +362,11 @@ const validateZip = () => {
     if (zipregEx.test(zip.value) === false) {
         zip.style.borderColor = "red";
         zipCheck = false;
-    }
-    let numString = zip.value.toString();
-
-    if (numString.length < 5 || numString.length > 5) {
-        zip.style.borderColor = "red";
-        zipCheck = false;
-    }
-    if (numString.length === 5) {
-        zip.style.borderColor = "transparent";
+    } else {
         zipCheck = true;
+        zip.style.borderColor = "transparent";
     }
+
     return zipCheck;
 };
 
@@ -396,21 +374,15 @@ const validateZip = () => {
 //validation on cvv
 const validateCvv = () => {
     const cvv = document.getElementById("cvv");
+    //let  cvvError=Number(cvv.value);
     if (cvvregEx.test(cvv.value) === false) {
         cvv.style.borderColor = "red";
         cvvCheck = false;
-    }
-    let numString = cvv.value.toString();
-
-    if (numString.length < 3 || numString.length > 3) {
-        cvv.style.borderColor = "red";
-        cvvCheck = false;
-
-    }
-    if (numString.length === 3) {
-        cvv.style.borderColor = "transparent";
+    } else {
         cvvCheck = true;
+        cvv.style.borderColor = "transparent";
     }
+
     return cvvCheck;
 
 };
