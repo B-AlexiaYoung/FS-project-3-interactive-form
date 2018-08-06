@@ -1,6 +1,7 @@
 //variables
 const other = document.getElementById("other-title")
 const selectColor = document.getElementById("design");
+const color = document.getElementById("color");
 const activities = document.getElementsByClassName("activities");
 const payment = document.getElementById("payment");
 const regEx = /[^@]+@[^@.]+\.[a-z]+$/i;
@@ -58,7 +59,7 @@ selectColor.addEventListener("change", (event) => {
     let darkslategrey = document.querySelector('[value=darkslategrey]');
     let gold = document.querySelector('[value=gold]');
     if (selectColor.value === "js puns") {
-
+        color.value="";
         cornflowerblue.style.display = "block";
         darkslategrey.style.display = "block";
         gold.style.display = "block";
@@ -67,6 +68,7 @@ selectColor.addEventListener("change", (event) => {
         dimgrey.style.display = "none";
     }
     if (selectColor.value === "heart js") {
+        color.value="";
         tomato.style.display = "block";
         steelblue.style.display = "block";
         dimgrey.style.display = "block";
@@ -200,7 +202,6 @@ cardListener.addEventListener("input", (event, para) => {
 
 // listener register button  Validation
 button[0].addEventListener("click", (event) => {
-
     // //validation for name
     let nameCheck = validateName();
     //validation for email
@@ -214,31 +215,29 @@ button[0].addEventListener("click", (event) => {
         ccStringValue = "";
     };
     let ccCheck = validateCreditCard(ccStringValue);
-
     //validation for zip 
     let zipCheck = validateZip();
-
     //validation for cvv
     let cvvCheck = validateCvv();
 
-
     let paymentCheck = false;
-    if (payment.selected === "credit card") {
-        if (ccCheck === true &&
-            zipCheck === true &&
-            cvvCheck === true) {
+    if (payment.value === "credit card") {
+        if (ccCheck === true && zipCheck === true && cvvCheck === true) {
             paymentCheck = true;
         }
     } else {
         paymentCheck = true;
+
     }
-    // final check 
+    // final check     
+
     if (nameCheck === true &&
         emailCheck === true &&
         boxCheck === true &&
         paymentCheck === true
 
     ) {
+
         // form.submit();
     } else {
         event.preventDefault();
@@ -377,7 +376,8 @@ const validateCvv = () => {
     //let  cvvError=Number(cvv.value);
     if (cvvregEx.test(cvv.value) === false) {
         cvv.style.borderColor = "red";
-        cvvCheck = false;
+        cvvCheck = false; 
+
     } else {
         cvvCheck = true;
         cvv.style.borderColor = "transparent";
