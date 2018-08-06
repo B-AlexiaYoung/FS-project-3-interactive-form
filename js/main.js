@@ -59,7 +59,7 @@ selectColor.addEventListener("change", (event) => {
     let darkslategrey = document.querySelector('[value=darkslategrey]');
     let gold = document.querySelector('[value=gold]');
     if (selectColor.value === "js puns") {
-        color.value="";
+        color.value = "";
         cornflowerblue.style.display = "block";
         darkslategrey.style.display = "block";
         gold.style.display = "block";
@@ -68,7 +68,7 @@ selectColor.addEventListener("change", (event) => {
         dimgrey.style.display = "none";
     }
     if (selectColor.value === "heart js") {
-        color.value="";
+        color.value = "";
         tomato.style.display = "block";
         steelblue.style.display = "block";
         dimgrey.style.display = "block";
@@ -376,7 +376,7 @@ const validateCvv = () => {
     //let  cvvError=Number(cvv.value);
     if (cvvregEx.test(cvv.value) === false) {
         cvv.style.borderColor = "red";
-        cvvCheck = false; 
+        cvvCheck = false;
 
     } else {
         cvvCheck = true;
